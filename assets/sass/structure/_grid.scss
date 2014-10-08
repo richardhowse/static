@@ -1,0 +1,36 @@
+
+/*
+	Grid
+*/
+
+$columns: 12;
+
+%row {
+	display: block;
+	margin: 0 (-$gutter*0.5);
+	box-sizing: border-box;
+	@extend %clearfix;
+}
+
+.row {
+	@extend %row;
+}
+
+@mixin column($n, $col:$columns, $break:'') {
+	@if $break == '' {
+        display: inline;
+		float: left;
+		width: percentage((1/$col)*$n);
+	    padding: 0 $gutter*0.5;
+	    box-sizing: border-box;
+	    @extend %clearfix;
+	} @else {
+		@media screen and (max-width: $break) {
+			width: percentage((1/$col)*$n);
+		}
+	}
+}
+
+@mixin offset($n, $col:$columns) {
+	margin-left: percentage((1/$col)*$n);
+}
